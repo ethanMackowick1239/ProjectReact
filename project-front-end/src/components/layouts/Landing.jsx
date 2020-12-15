@@ -6,7 +6,7 @@ export default class Landing extends Component {
   render() {
     return (
       <div className="landing">
-        <div className="dark-overlay landing-inner text-light">
+        <div className ="p-3 mb-2 bg-dark text-white">
           <div className="container">
             <div className="row">
               <div className="col-md-12 text-center">
