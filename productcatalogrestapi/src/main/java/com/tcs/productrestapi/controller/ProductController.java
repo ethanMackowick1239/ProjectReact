@@ -80,5 +80,9 @@ public class ProductController {
 		return ResponseEntity.ok(product3);
 	}
 	
-	
+	 @GetMapping("/{category}")
+	 public ResponseEntity<Product> getByCategory(@PathVariable("category") String category) throws ResourceNotFoundException { 
+		Product product = (Product) productService.getProductByCategory(category).orElseThrow(()-> new ResourceNotFoundException("Product not found"));
+		return ResponseEntity.ok().body(product);
+	 }
 }
