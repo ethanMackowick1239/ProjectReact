@@ -7,7 +7,7 @@ export default class Header extends Component {
       <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
         <div className="container">
           <a className="navbar-brand" href="landing.html">
-            DevConnector
+            Spring/React Project
           </a>
           <button
             class="navbar-toggler"
@@ -21,10 +21,9 @@ export default class Header extends Component {
           <div className="collapse navbar-collapse" id="mobile-nav">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
-                <a className="nav-link" href="profiles.html">
-                  {" "}
-                  Developers
-                </a>
+                <Link className="nav-link" to="/Home">
+                  Home
+                </Link>
               </li>
             </ul>
 

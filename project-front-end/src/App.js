@@ -5,9 +5,13 @@ import Footer from './components/layouts/Footer'
 import Landing from './components/layouts/Landing'
 import Home from './components/layouts/Home'
 import Product from './components/layouts/Product'
+import ProductGet from './components/layouts/ProductGet'
 import Price from './components/layouts/Price'
+import PriceGet from './components/layouts/PriceGet'
 import Review from './components/layouts/Review'
+import ReviewGet from './components/layouts/ReviewGet'
 import Stock from './components/layouts/Stock'
+import StockGet from './components/layouts/StockGet'
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 
@@ -23,6 +27,10 @@ function App() {
       <Route exact path="/" component={Landing}></Route>
       <Route exact path="/Home" component={Home}></Route>
       <Route exact path="/Product" component={Product}></Route>
+      <Route exact path="/ProductGet" component={ProductGet}></Route>
+      <Route exact path="/StockGet" component={StockGet}></Route>
+      <Route exact path="/PriceGet" component={PriceGet}></Route>
+      <Route exact path="/ReviewGet" component={ReviewGet}></Route>
       <Route exact path="/Price" component={Price}></Route>
       <Route exact path="/Stock" component={Stock}></Route>
       <Route exact path="/Review" component={Review}></Route>

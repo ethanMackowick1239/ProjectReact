@@ -37,6 +37,35 @@ export default class Home extends Component {
                 </Link>
               </div>
             </div>
+            <div className="row">
+              <div className="col-md-12 text-center">
+                <h1 className="display-3 mb-4">Project home page</h1>
+                <p className="lead">
+                  {" "}
+                  Or? Do you want to Get from a servic
+                </p>
+                <Link to="/ProductGet">
+                    <button type="button" class ="btn btn-lg btn-info mr-2">
+                    Product
+                    </button>
+                </Link>
+                <Link to="/PriceGet">
+                    <button type="button" class ="btn btn-lg btn-info mr-2">
+                    Price
+                    </button>
+                </Link>
+                <Link to="/StockGet">
+                    <button type="button" class ="btn btn-lg btn-info mr-2">
+                    Stock
+                    </button>
+                </Link>
+                <Link to="/ReviewGet">
+                    <button type="button" class ="btn btn-lg btn-info mr-2">
+                    Review
+                    </button>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </div>

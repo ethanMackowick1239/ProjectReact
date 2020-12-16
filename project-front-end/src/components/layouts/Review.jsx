@@ -17,7 +17,6 @@ export default class Review extends Component {
         e.preventDefault();
         console.log("Final state: " + JSON.stringify(this.state));
         const review = {
-          id: this.state.id,
           comment: this.state.comment,
           rating: this.state.rating,
           productId: this.state.productId,
@@ -25,6 +24,40 @@ export default class Review extends Component {
         };
         axios
           .post("http://localhost:9050/api/auth/signin", review)
+          .then((response) =>{ console.log(response.data)
+          
+          localStorage.setItem('data',JSON.stringify(response.data))
+          })
+          .catch((err) => console.log(err));
+      };
+
+      handleDelete = event => {
+        this.setState({ id: event.target.value });
+      }
+    
+      onDelete = event => {
+        event.preventDefault();
+    
+        axios.delete(`https://jsonplaceholder.typicode.com/users/${this.state.id}`)
+          .then(res => {
+            console.log(res);
+            console.log(res.data);
+          })
+      }
+    
+
+      onUpdate = (e) => {
+        e.preventDefault();
+        console.log("Final state: " + JSON.stringify(this.state));
+        const reviewUpdate = {
+          id: this.state.id,
+          comment: this.state.comment,
+          rating: this.state.rating,
+          productId: this.state.productId,
+          username: this.state.username
+        };
+        axios
+          .post("http://localhost:9050/api/auth/signin", reviewUpdate)
           .then((response) =>{ console.log(response.data)
           
           localStorage.setItem('data',JSON.stringify(response.data))
@@ -44,26 +77,55 @@ export default class Review extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-12 text-center">
-                <h1 className="display-3 mb-4"> Review Service</h1>
+                <h1 className="display-3 mb-4">Create a Review</h1>
                 <form  onSubmit={this.onSubmit}>
+                    <div className="form-group">
+                      <input type="text" className="form-control form-control-lg" placeholder="Comment" name="comment" required 
+                      value={this.state.comment}
+                      onChange={this.handleChange} />
+                    </div>
+                    <div className="form-group">
+                      <input type="text" className="form-control form-control-lg" placeholder="Rating" name="rating" value={this.state.rating} onChange={this.handleChange}/>
+                    </div>
+                    <div className="form-group">
+                      <input type="text" className="form-control form-control-lg" placeholder="ProductId" name="productId"  value={this.state.productId} onChange={this.handleChange}/>
+                    </div>
+                    <div className="form-group">
+                      <input type="text" className="form-control form-control-lg" placeholder="Username" name="username" value={this.state.username} onChange={this.handleChange} />
+                    </div>
+                    <input type="submit" className="btn btn-info btn-block mt-4" />
+                  </form>
+
+                  <h1 className="display-3 mb-4"> Delete a Review </h1>
+                 <form  onSubmit={this.onDelete}>
+                    <div className="form-group">
+                      <input type="text" className="form-control form-control-lg" placeholder="Id" name="id" required 
+                      value={this.state.id}
+                      onChange={this.handleDelete} />
+                    </div>
+                    <input type="submit" className="btn btn-info btn-block mt-4" />
+                  </form>
+
+                  <h1 className="display-3 mb-4"> Update a Review</h1>
+                <form  onSubmit={this.onUpdate}>
                 <div className="form-group">
                       <input type="text" className="form-control form-control-lg" placeholder="Id" name="id" required 
                       value={this.state.id}
                       onChange={this.handleChange} />
                     </div>
                     <div className="form-group">
-                      <input type="text" className="form-control form-control-lg" placeholder="Name" name="comment" required 
+                      <input type="text" className="form-control form-control-lg" placeholder="Comment" name="comment" required 
                       value={this.state.comment}
                       onChange={this.handleChange} />
                     </div>
                     <div className="form-group">
-                      <input type="email" className="form-control form-control-lg" placeholder="Category" name="rating" value={this.state.rating} onChange={this.handleChange}/>
+                      <input type="text" className="form-control form-control-lg" placeholder="Rating" name="rating" value={this.state.rating} onChange={this.handleChange}/>
                     </div>
                     <div className="form-group">
-                      <input type="password" className="form-control form-control-lg" placeholder="Description" name="productId"  value={this.state.productId} onChange={this.handleChange}/>
+                      <input type="text" className="form-control form-control-lg" placeholder="ProductId" name="productId"  value={this.state.productId} onChange={this.handleChange}/>
                     </div>
                     <div className="form-group">
-                      <input type="password" className="form-control form-control-lg" placeholder="Expiry Date" name="username" value={this.state.username} onChange={this.handleChange} />
+                      <input type="text" className="form-control form-control-lg" placeholder="Username" name="username" value={this.state.username} onChange={this.handleChange} />
                     </div>
                     <input type="submit" className="btn btn-info btn-block mt-4" />
                   </form>
