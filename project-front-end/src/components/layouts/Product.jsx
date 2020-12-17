@@ -19,7 +19,7 @@ export default class Product extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     console.log("Final state: " + JSON.stringify
-    (this.state));
+      (this.state));
     const product = {
       productName: this.state.productName,
       category: this.state.category,
@@ -57,16 +57,17 @@ export default class Product extends Component {
       expiryDate: this.state.expiryDate,
     };
     axios
-    .put(`http://localhost:9021/microservices/product/${this.state.productId}`, productUpdate)
-    .then((response) =>{ console.log(response.data)
-          
-      localStorage.setItem('data',JSON.stringify(response.data))
-      toast.dark("Product updated !", {
-        position: "top-center",
-        autoClose: 5000,
-      });
+      .put(`http://localhost:9021/microservices/product/${this.state.productId}`, productUpdate)
+      .then((response) => {
+        console.log(response.data)
+
+        localStorage.setItem('data', JSON.stringify(response.data))
+        toast.dark("Product updated !", {
+          position: "top-center",
+          autoClose: 5000,
+        });
       })
-      .catch((err) =>toast.error("Error!", {
+      .catch((err) => toast.error("Error!", {
         position: "top-center",
         autoClose: 5000,
       }))
@@ -94,20 +95,27 @@ export default class Product extends Component {
         console.log(res);
         console.log(res.data);
       });
-      toast.dark("Product deleted!", {
-        position: "top-center",
-        autoClose: 5000,
-      });
+    toast.dark("Product deleted!", {
+      position: "top-center",
+      autoClose: 5000,
+    });
   };
 
   render() {
+    const headerStyle = {
+      borderBottom: "5px solid rgb(169, 169, 169)",
+      marginBottom: "10%"
+    };
+    const buttonStyle = {
+      marginBottom: "10%"
+    };
     return (
       <div className="Product">
-        <div className="p-3 mb-2 bg-dark text-white">
+        <div className="p-3 mb-2 bg-light text-dark">
           <div className="container">
             <div className="row">
               <div className="col-md-12 text-center">
-                <h1 className="display-3 mb-4">Create a Product</h1>
+                <h1 className="display-3 mb-4" style={headerStyle}>Create a Product</h1>
                 <form onSubmit={this.onSubmit}>
                   <div className="form-group">
                     <input
@@ -152,12 +160,13 @@ export default class Product extends Component {
                     />
                   </div>
                   <input
+                    style={buttonStyle}
                     type="submit"
                     className="btn btn-info btn-block mt-4"
                   />
                 </form>
 
-                <h1 className="display-3 mb-4">Delete a Product</h1>
+                <h1 className="display-3 mb-4" style={headerStyle}>Delete a Product</h1>
                 <form onSubmit={this.onDelete}>
                   <div className="form-group">
                     <input
@@ -171,12 +180,13 @@ export default class Product extends Component {
                     />
                   </div>
                   <input
+                    style={buttonStyle}
                     type="submit"
                     className="btn btn-info btn-block mt-4"
                   />
                 </form>
 
-                <h1 className="display-3 mb-4"> Update a Product</h1>
+                <h1 className="display-3 mb-4" style={headerStyle}> Update a Product</h1>
                 <form onSubmit={this.onUpdate}>
                   <div className="form-group">
                     <input

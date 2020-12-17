@@ -92,13 +92,20 @@ export default class Review extends Component {
     });
   };
   render() {
+    const headerStyle = {
+      borderBottom: "5px solid rgb(169, 169, 169)",
+      marginBottom: "10%"
+    };
+    const buttonStyle = {
+      marginBottom: "10%"
+    };
     return (
       <div className="Product">
-        <div className="p-3 mb-2 bg-dark text-white">
+        <div className="p-3 mb-2 bg-light text-dark">
           <div className="container">
             <div className="row">
               <div className="col-md-12 text-center">
-                <h1 className="display-3 mb-4">Create a Review</h1>
+                <h1 className="display-3 mb-4" style={headerStyle} >Create a Review</h1>
                 <form onSubmit={this.onSubmit}>
                   <div className="form-group">
                     <input type="text" className="form-control form-control-lg" placeholder="Comment" name="comment" required
@@ -115,23 +122,23 @@ export default class Review extends Component {
                   <div className="form-group">
                     <input type="text" className="form-control form-control-lg" placeholder="Username" name="username" value={this.state.username} onChange={this.handleChange} />
                   </div>
-                  <input type="submit" className="btn btn-info btn-block mt-4" />
+                  <input type="submit" style={buttonStyle} className="btn btn-info btn-block mt-4" />
                 </form>
 
-                <h1 className="display-3 mb-4"> Delete a Review </h1>
+                <h1 className="display-3 mb-4" style={headerStyle} > Delete a Review </h1>
                 <form onSubmit={this.onDelete}>
                   <div className="form-group">
-                    <input type="text" className="form-control form-control-lg" placeholder="Id" name="id" required
+                    <input type="text" className="form-control form-control-lg" placeholder="Id" name="deleteId" required
                       value={this.state.id}
                       onChange={this.handleDelete} />
                   </div>
-                  <input type="submit" className="btn btn-info btn-block mt-4" />
+                  <input type="submit" style={buttonStyle} className="btn btn-info btn-block mt-4" />
                 </form>
 
-                <h1 className="display-3 mb-4"> Update a Review</h1>
+                <h1 className="display-3 mb-4" style={headerStyle}> Update a Review</h1>
                 <form onSubmit={this.onUpdate}>
                   <div className="form-group">
-                    <input type="text" className="form-control form-control-lg" placeholder="Id" name="id" required
+                    <input type="text" className="form-control form-control-lg" placeholder="Id" name="updateId" required
                       value={this.state.id}
                       onChange={this.handleChange} />
                   </div>

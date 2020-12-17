@@ -97,13 +97,20 @@ export default class Price extends Component {
   };
 
   render() {
+    const headerStyle = {
+      borderBottom: "5px solid rgb(169, 169, 169)",
+      marginBottom: "10%"
+    };
+    const buttonStyle = {
+      marginBottom: "10%"
+    };
     return (
       <div className="Product">
-        <div className="p-3 mb-2 bg-dark text-white">
+        <div className="p-3 mb-2 bg-light text-dark">
           <div className="container">
             <div className="row">
               <div className="col-md-12 text-center">
-                <h1 className="display-3 mb-4"> Create a New Price</h1>
+                <h1 className="display-3 mb-4" style={headerStyle}> Create a New Price</h1>
                 <form onSubmit={this.onSubmit}>
                   <div className="form-group">
                     <input
@@ -128,12 +135,13 @@ export default class Price extends Component {
                   </div>
                   <ToastContainer />
                   <input
+                    style={buttonStyle}
                     type="submit"
                     className="btn btn-info btn-block mt-4"
                   />
                 </form>
 
-                <h1 className="display-3 mb-4"> Delete a Price</h1>
+                <h1 className="display-3 mb-4" style={headerStyle}> Delete a Price</h1>
                 <form onSubmit={this.onDelete}>
                   <div className="form-group">
                     <input
@@ -147,12 +155,13 @@ export default class Price extends Component {
                     />
                   </div>
                   <input
+                    style={buttonStyle}
                     type="submit"
                     className="btn btn-info btn-block mt-4"
                   />
                 </form>
 
-                <h1 className="display-3 mb-4">Update a Price</h1>
+                <h1 className="display-3 mb-4" style={headerStyle}>Update a Price</h1>
                 <form onSubmit={this.onUpdate}>
                   <div className="form-group">
                     <input

@@ -13,7 +13,7 @@ export default class StockGet extends Component {
     }
   }
   async getUsersData() {
-    const res = await axios.get('http://localhost:9021/microservices/stock')
+    const res = await axios.get('http://localhost:9021/microservices/stock/')
     console.log(res.data)
     this.setState({ loading: false, stock: res.data })
   }
@@ -24,11 +24,11 @@ export default class StockGet extends Component {
     const columns = [
       {
         Header: 'Stock ID',
-        accessor: 'stockid',
+        accessor: 'stockId',
       }
       , {
         Header: 'Product ID',
-        accessor: 'productid',
+        accessor: 'productId',
       }
 
       , {

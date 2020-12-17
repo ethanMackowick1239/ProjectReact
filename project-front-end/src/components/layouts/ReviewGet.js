@@ -24,7 +24,7 @@ export default class ReviewGet extends Component {
         const columns = [
             {
                 Header: 'Review ID',
-                accessor: 'reviewId',
+                accessor: 'id',
             }
             , {
                 Header: 'Comment',
