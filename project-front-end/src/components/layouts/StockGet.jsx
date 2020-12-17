@@ -18,6 +18,17 @@ export default class StockGet extends Component {
         this.setState({ stock });
       })
   }
+  handleGetById = event => {
+    this.setState({ stockid: event.target.value });
+  }
+  getStockById() {
+    axios.get(`https://jsonplaceholder.typicode.com/users/${this.state.stockid}`)
+      .then(res => {
+        const stock = res.data;
+        this.setState({ stock });
+      })
+  }
+  
  
   handleChange = (event) => {
     this.setState({
@@ -49,10 +60,10 @@ export default class StockGet extends Component {
                   </ul>
 
                   <h1 className="display-3 mb-4"> Get Stock By ID  </h1>
-                    <form  onSubmit={this.getProductById}>
+                    <form  onSubmit={this.getStockById}>
                     <div className="form-group">
                       <input type="text" className="form-control form-control-lg" placeholder="Name" name="productid" required 
-                      value={this.state.productid}
+                      value={this.state.stockid}
                       onChange={this.handleChange} />
                     </div>
                     <input type="submit" className="btn btn-info btn-block mt-4" />

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default class Home extends Component {
@@ -10,10 +12,10 @@ export default class Home extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-12 text-center">
-                <h1 className="display-3 mb-4">Project home page</h1>
+                <h1 className="display-3 mb-4">Services</h1>
                 <p className="lead">
                   {" "}
-                  Which service do you want to manipulate
+                  Add to your 
                 </p>
                 <Link to="/Product">
                     <button type="button" class ="btn btn-lg btn-info mr-2">
@@ -39,10 +41,10 @@ export default class Home extends Component {
             </div>
             <div className="row">
               <div className="col-md-12 text-center">
-                <h1 className="display-3 mb-4">Project home page</h1>
+                <h1 className="display-3 mb-4">Get Services</h1>
                 <p className="lead">
                   {" "}
-                  Or? Do you want to Get from a servic
+                  Or? Do you want to Get from a service
                 </p>
                 <Link to="/ProductGet">
                     <button type="button" class ="btn btn-lg btn-info mr-2">

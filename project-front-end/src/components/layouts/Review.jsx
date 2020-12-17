@@ -1,5 +1,7 @@
 import axios from "axios";
 import React, { Component } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default class Review extends Component {
     constructor() {
@@ -23,12 +25,44 @@ export default class Review extends Component {
           username: this.state.username
         };
         axios
-          .post("http://localhost:9050/api/auth/signin", review)
+          .post("http://localhost:9021/microservices/review", review)
           .then((response) =>{ console.log(response.data)
           
           localStorage.setItem('data',JSON.stringify(response.data))
+          toast.dark("Review added !", {
+            position: "top-center",
+            autoClose: 5000,
+          });
           })
-          .catch((err) => console.log(err));
+          .catch((err) => toast.error("Error!!", {
+            position: "top-center",
+            autoClose: 5000,
+          }));
+      };
+
+      onUpdate = (e) => {
+        e.preventDefault();
+        console.log("Final state: " + JSON.stringify(this.state));
+        const review = {
+          comment: this.state.comment,
+          rating: this.state.rating,
+          productId: this.state.productId,
+          username: this.state.username
+        };
+        axios
+          .put(`http://localhost:9021/microservices/${this.state.id}`, review)
+          .then((response) =>{ console.log(response.data)
+          
+          localStorage.setItem('data',JSON.stringify(response.data))
+          toast.dark("Review updated !", {
+            position: "top-center",
+            autoClose: 5000,
+          });
+          })
+          .catch((err) =>toast.error("Error!", {
+            position: "top-center",
+            autoClose: 5000,
+          }))
       };
 
       handleDelete = event => {
@@ -38,32 +72,16 @@ export default class Review extends Component {
       onDelete = event => {
         event.preventDefault();
     
-        axios.delete(`https://jsonplaceholder.typicode.com/users/${this.state.id}`)
+        axios.delete(`http://localhost:9021/microservices/${this.state.id}`)
           .then(res => {
             console.log(res);
             console.log(res.data);
           })
+          toast.dark("Review deleted!", {
+            position: "top-center",
+            autoClose: 5000,
+          });
       }
-    
-
-      onUpdate = (e) => {
-        e.preventDefault();
-        console.log("Final state: " + JSON.stringify(this.state));
-        const reviewUpdate = {
-          id: this.state.id,
-          comment: this.state.comment,
-          rating: this.state.rating,
-          productId: this.state.productId,
-          username: this.state.username
-        };
-        axios
-          .post("http://localhost:9050/api/auth/signin", reviewUpdate)
-          .then((response) =>{ console.log(response.data)
-          
-          localStorage.setItem('data',JSON.stringify(response.data))
-          })
-          .catch((err) => console.log(err));
-      };
       
       handleChange = (event) => {
         this.setState({
@@ -84,6 +102,7 @@ export default class Review extends Component {
                       value={this.state.comment}
                       onChange={this.handleChange} />
                     </div>
+                    <ToastContainer />
                     <div className="form-group">
                       <input type="text" className="form-control form-control-lg" placeholder="Rating" name="rating" value={this.state.rating} onChange={this.handleChange}/>
                     </div>

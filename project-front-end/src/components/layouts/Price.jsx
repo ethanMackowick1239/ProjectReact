@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 export default class Price extends Component {
@@ -21,28 +24,34 @@ export default class Price extends Component {
           pricevalue: this.state.pricevalue
         };
         axios
-          .post("http://localhost:9050/api/auth/signin", price)
+          .post("http://localhost:9021/microservices/price", price)
           .then((response) =>{ console.log(response.data)
           
           localStorage.setItem('data',JSON.stringify(response.data))
+          toast.dark("Price added !", {
+            position: "top-center",
+            autoClose: 5000,
+          });
           })
-          .catch((err) => console.log(err));
+          .catch((err) => toast.error("Error!!", {
+            position: "top-center",
+            autoClose: 5000,
+          }));
       };
 
-      onDelete = (e) => {
-        e.preventDefault();
-        console.log("Final state: " + JSON.stringify(this.state));
-        const priceDelete = {
-          priceid: this.state.productid,
-        };
-        axios
-          .post("http://localhost:9050/api/auth/signin", priceDelete)
-          .then((response) =>{ console.log(response.data)
-          
-          localStorage.setItem('data',JSON.stringify(response.data))
+      handleDelete = event => {
+        this.setState({ priceid: event.target.value });
+      }
+    
+      onDelete = event => {
+        event.preventDefault();
+    
+        axios.delete(`http://localhost:9021/microservices/price/${this.state.priceid}`)
+          .then(res => {
+            console.log(res);
+            console.log(res.data);
           })
-          .catch((err) => console.log(err));
-      };
+      }
 
       onUpdate = (e) => {
         e.preventDefault();
@@ -52,13 +61,19 @@ export default class Price extends Component {
           productid: this.state.productid,
           pricevalue: this.state.pricevalue
         };
-        axios
-          .post("http://localhost:9050/api/auth/signin", priceUpdate)
+        axios.put(`http://localhost:9021/microservices/price/${this.state.priceid}`, priceUpdate)
           .then((response) =>{ console.log(response.data)
           
           localStorage.setItem('data',JSON.stringify(response.data))
+          toast.dark("Price Updated !", {
+            position: "top-center",
+            autoClose: 5000,
+          });
           })
-          .catch((err) => console.log(err));
+          .catch((err) =>toast.error("Error!", {
+            position: "top-center",
+            autoClose: 5000,
+          }))
       };
       
       handleChange = (event) => {
@@ -91,7 +106,7 @@ export default class Price extends Component {
                         <div className="form-group">
                           <input type="text" className="form-control form-control-lg" placeholder="ID" name="priceid" required 
                           value={this.state.priceid}
-                          onChange={this.handleChange} />
+                          onChange={this.handleDelete} />
                         </div>
                         <input type="submit" className="btn btn-info btn-block mt-4" />
                       </form>

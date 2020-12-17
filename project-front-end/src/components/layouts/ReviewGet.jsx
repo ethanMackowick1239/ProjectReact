@@ -3,27 +3,37 @@ import React, { Component } from 'react'
 
 
 export default class ReviewGet extends Component {
-  constructor() {
-    super();
-    this.state = {
-      product: []
-    };
-  }
-  
-  //Gets all Products
-  onGetAllProducts() {
-    axios.get(`https://jsonplaceholder.typicode.com/users`)
-      .then(res => {
-        const product = res.data;
-        this.setState({ product });
-      })
-  }
- 
-  handleChange = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
-  };
+  //   constructor(props){
+  //     super(props);
+  //     this.state = {
+  //       productId: "",
+  //       posts:"",
+  //     };
+  //   }
+  //   submitForm = (e) =>{
+  //     e.preventDefault();
+  //     axios
+  //     .get(
+  //       "htpp://localhost:9021/microservices/" + parseInt(this.state.productId),
+  //       {
+  //         headers:{
+  //           "Access-Control-Allow-Origin": "*"
+  //         },
+  //       }
+  //     )
+  //     .then((res) => {
+  //       this.setState( state: {
+  //         posts: res.data,
+  //       });
+  //     });
+  //   };
+      
+  // handleNameChange() = (e) => {
+  //   this.setState(state:{
+  //     productId: parseInt(e.target.value),
+  //   });
+  // }
+
 
   render() {
     return (
@@ -36,19 +46,6 @@ export default class ReviewGet extends Component {
 
                   <h1 className="display-3 mb-4"> Get All  Products </h1>
                     <form  onSubmit={this.onGetAllProducts}>
-                    {/* <div className="form-group">
-                      <input type="text" className="form-control form-control-lg" placeholder="Name" name="productid" required 
-                      value={this.state.productid}
-                      onChange={this.handleChange} />
-                    </div> */}
-                    <input type="submit" className="btn btn-info btn-block mt-4" />
-                  </form>
-                  <ul>
-                     { this.state.product.map(product => <li>{product.productid} {product.productname}</li>)}
-                  </ul>
-
-                  <h1 className="display-3 mb-4"> Get Product By ID  </h1>
-                    <form  onSubmit={this.getProductById}>
                     <div className="form-group">
                       <input type="text" className="form-control form-control-lg" placeholder="Name" name="productid" required 
                       value={this.state.productid}
@@ -57,7 +54,21 @@ export default class ReviewGet extends Component {
                     <input type="submit" className="btn btn-info btn-block mt-4" />
                   </form>
                   <ul>
-                     { this.state.product.map(product => <li>{product.productid} {product.productname}</li>)}
+                     { this.state.review.map(review => <li>{review.username} </li>)}
+                  </ul>
+
+                 <h1 className="display-3 mb-4"> Get Product By ID  </h1>
+                     <form  onSubmit={this.getReviewByProductId}>
+                    <div className="form-group">
+                       <input type="text" className="form-control form-control-lg" placeholder="Name" name="productid" required 
+                      value={this.state.productid}
+                    //   onChange={this.handleChange} 
+                    />
+                    </div>
+                    <input type="submit" className="btn btn-info btn-block mt-4" />
+                  </form>
+                  <ul>
+                     { this.state.review.map(review => <li>{review.username}</li>)}
                   </ul>
               </div>
             </div>

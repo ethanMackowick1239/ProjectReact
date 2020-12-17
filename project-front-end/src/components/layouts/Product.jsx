@@ -1,5 +1,7 @@
 import axios from "axios";
 import React, { Component } from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default class Product extends Component {
@@ -19,18 +21,25 @@ export default class Product extends Component {
     e.preventDefault();
     console.log("Final state: " + JSON.stringify(this.state));
     const product = {
-      productname: this.state.productname,
+      productname: this.state.comment,
       category: this.state.category,
       description: this.state.description,
       expire: this.state.expire
     };
     axios
-      .post("https://localhost:9050/api/auth/signin", product)
+      .post("http://localhost:9021/microservices/product", product)
       .then((response) =>{ console.log(response.data)
       
-      localStorage.setItem('data',JSON.stringify(response.data))
-      })
-      .catch((err) => console.log(err));
+        localStorage.setItem('data',JSON.stringify(response.data))
+        toast.dark("Review updated !", {
+          position: "top-center",
+          autoClose: 5000,
+        });
+        })
+        .catch((err) =>toast.error("Error!", {
+          position: "top-center",
+          autoClose: 5000,
+        }))
   };
 
   //Handles Update
@@ -50,7 +59,10 @@ export default class Product extends Component {
       
       localStorage.setItem('data',JSON.stringify(response.data))
       })
-      .catch((err) => console.log(err));
+      .catch((err) => toast.error("Error!!", {
+        position: "top-center",
+        autoClose: 5000,
+      }));
   };
   handleChange = (event) => {
     this.setState({

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default class Stock extends Component {
   constructor() {
@@ -17,17 +19,20 @@ export default class Stock extends Component {
     e.preventDefault();
     console.log("Final state: " + JSON.stringify(this.state));
     const stock = {
-      productid: this.state.productif,
+      productid: this.state.productid,
       quantity: this.state.quantity,
       location: this.state.location
     };
     axios
-      .post("https://localhost:9050/api/auth/signin", stock)
+      .post("http://localhost:9021/microservices/stock", stock)
       .then((response) =>{ console.log(response.data)
       
       localStorage.setItem('data',JSON.stringify(response.data))
       })
-      .catch((err) => console.log(err));
+      .catch((err) => toast.error("Error!!", {
+        position: "top-center",
+        autoClose: 5000,
+      }));
   };
 
   //Handles Update
@@ -41,29 +46,32 @@ export default class Stock extends Component {
       location: this.state.location
     };
     axios
-      .post("https://localhost:9050/api/auth/signin", stockUpdate)
-      .then((response) =>{ console.log(response.data)
+    .put(`http://localhost:9021/microservices/stock/${this.state.stockid}`, stockUpdate)
+    .then((response) =>{ console.log(response.data)
       
       localStorage.setItem('data',JSON.stringify(response.data))
       })
-      .catch((err) => console.log(err));
+      .catch((err) => toast.error("Error!!", {
+        position: "top-center",
+        autoClose: 5000,
+      }));
   };
 
   //Handles Deletion
-  ondelete = (e) => {
-    e.preventDefault();
-    console.log("Final state: " + JSON.stringify(this.state));
-    const stockDelete = {
-      stockid: this.state.stockid
-    };
-    axios
-      .post("https://localhost:9050/api/auth/signin", stockDelete)
-      .then((response) =>{ console.log(response.data)
-      
-      localStorage.setItem('data',JSON.stringify(response.data))
+  handleDelete = event => {
+    this.setState({ stockid: event.target.value });
+  }
+
+  onDelete = event => {
+    event.preventDefault();
+
+    axios.delete(`http://localhost:9021/microservices/stock/${this.state.stockid}`)
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
       })
-      .catch((err) => console.log(err));
-  };
+  }
+
   
   handleChange = (event) => {
     this.setState({
@@ -96,7 +104,7 @@ export default class Stock extends Component {
                     <div className="form-group">
                       <input type="text" className="form-control form-control-lg" placeholder="Stock ID" name="stockid" required 
                       value={this.state.stockid}
-                      onChange={this.handleChange} />
+                      onChange={this.handleDelete} />
                     </div>
                     <input type="submit" className="btn btn-info btn-block mt-4" />
                   </form>
