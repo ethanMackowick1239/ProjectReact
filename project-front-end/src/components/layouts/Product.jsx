@@ -21,7 +21,7 @@ export default class Product extends Component {
     e.preventDefault();
     console.log("Final state: " + JSON.stringify(this.state));
     const product = {
-      productname: this.state.comment,
+      productname: this.state.productname,
       category: this.state.category,
       description: this.state.description,
       expire: this.state.expire

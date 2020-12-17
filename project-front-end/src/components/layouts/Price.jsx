@@ -19,12 +19,12 @@ export default class Price extends Component {
       onSubmit = (e) => {
         e.preventDefault();
         console.log("Final state: " + JSON.stringify(this.state));
-        const price = {
+        const priceCreate = {
           productid: this.state.productid,
           pricevalue: this.state.pricevalue
         };
         axios
-          .post("http://localhost:9021/microservices/price", price)
+          .post("http://localhost:9021/microservices/price", priceCreate)
           .then((response) =>{ console.log(response.data)
           
           localStorage.setItem('data',JSON.stringify(response.data))
