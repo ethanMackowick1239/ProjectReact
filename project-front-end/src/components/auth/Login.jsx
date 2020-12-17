@@ -18,10 +18,12 @@ export default class Login extends Component {
       password: this.state.password,
     };
     axios
-      .post("http://localhost:9050/api/auth/signin", loginUser)
-      .then((response) =>{ console.log(response.data)
-      
-      localStorage.setItem('data',JSON.stringify(response.data))
+      .post("http://localhost:9021/microservices/signin", loginUser)
+      .then((response) => {
+        console.log(response.data)
+
+        localStorage.setItem('data', JSON.stringify(response.data))
+        //TODO route to home page
       })
       .catch((err) => console.log(err));
   };

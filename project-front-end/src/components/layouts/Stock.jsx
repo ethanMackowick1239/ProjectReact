@@ -8,7 +8,7 @@ export default class Stock extends Component {
     super();
     this.state = {
       stockid: "",
-      productid: "",
+      productId: "",
       quantity:"",
       location:""
     };
@@ -19,7 +19,7 @@ export default class Stock extends Component {
     e.preventDefault();
     console.log("Final state: " + JSON.stringify(this.state));
     const stock = {
-      productid: this.state.productid,
+      productId: this.state.productId,
       quantity: this.state.quantity,
       location: this.state.location
     };
@@ -28,6 +28,10 @@ export default class Stock extends Component {
       .then((response) =>{ console.log(response.data)
       
       localStorage.setItem('data',JSON.stringify(response.data))
+      toast.dark("Stock added !", {
+        position: "top-center",
+        autoClose: 5000,
+      });
       })
       .catch((err) => toast.error("Error!!", {
         position: "top-center",
@@ -41,7 +45,7 @@ export default class Stock extends Component {
     console.log("Final state: " + JSON.stringify(this.state));
     const stockUpdate = {
       stockid: this.state.stockid,
-      productid: this.state.productif,
+      productId: this.state.productif,
       quantity: this.state.quantity,
       location: this.state.location
     };
@@ -50,6 +54,10 @@ export default class Stock extends Component {
     .then((response) =>{ console.log(response.data)
       
       localStorage.setItem('data',JSON.stringify(response.data))
+      toast.dark("Stock Updated !", {
+        position: "top-center",
+        autoClose: 5000,
+      });
       })
       .catch((err) => toast.error("Error!!", {
         position: "top-center",
@@ -70,6 +78,10 @@ export default class Stock extends Component {
         console.log(res);
         console.log(res.data);
       })
+      toast.dark("Stock Deleted !", {
+        position: "top-center",
+        autoClose: 5000,
+      });
   }
 
   
@@ -88,7 +100,7 @@ export default class Stock extends Component {
                 <h1 className="display-3 mb-4"> Stock Service</h1>
                 <form  onSubmit={this.onSubmit}>
                     <div className="form-group">
-                      <input type="text" className="form-control form-control-lg" placeholder="Product ID" name="productid" value={this.state.productid} onChange={this.handleChange}/>
+                      <input type="text" className="form-control form-control-lg" placeholder="Product ID" name="productId" value={this.state.productId} onChange={this.handleChange}/>
                     </div>
                     <div className="form-group">
                       <input type="text" className="form-control form-control-lg" placeholder="Quantity" name="quantity"  value={this.state.quantity} onChange={this.handleChange}/>
@@ -117,8 +129,9 @@ export default class Stock extends Component {
                       onChange={this.handleChange} />
                     </div>
                     <div className="form-group">
-                      <input type="text" className="form-control form-control-lg" placeholder="Product ID" name="productid" value={this.state.productid} onChange={this.handleChange}/>
+                      <input type="text" className="form-control form-control-lg" placeholder="Product ID" name="productId" value={this.state.productId} onChange={this.handleChange}/>
                     </div>
+                    <ToastContainer />
                     <div className="form-group">
                       <input type="text" className="form-control form-control-lg" placeholder="Quantity" name="quantity"  value={this.state.quantity} onChange={this.handleChange}/>
                     </div>
