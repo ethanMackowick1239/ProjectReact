@@ -21,6 +21,12 @@ export default class StockGet extends Component {
     this.getUsersData()
   }
   render() {
+    const tableStyle = {
+      border: "5px solid rgb(112,128,144)",
+    };
+    const headerStyle = {
+      marginBottom: ".5%"
+    };
     const columns = [
       {
         Header: 'Stock ID',
@@ -41,13 +47,27 @@ export default class StockGet extends Component {
       }
     ]
     return (
-      <ReactTable
-        data={this.state.stock}
-        columns={columns}
-        filterable
-        defaultPageSize={10}
-        className="-striped -highlight"
-      />
+
+      <div className="Product">
+        <div className="p-3 mb-2 bg-light text-dark">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-12 text-center">
+                <h1 className="display-3 mb-4" style={headerStyle} >All Stocks</h1>
+                <div style={tableStyle}>
+                  <ReactTable
+                    data={this.state.stock}
+                    columns={columns}
+                    filterable
+                    defaultPageSize={7}
+                    className="-striped -highlight"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     )
   }
 }

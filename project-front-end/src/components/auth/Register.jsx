@@ -51,8 +51,8 @@ const Register = ({ registerUser, isAuthenticated }) => {
               </div>
               <div className="form-group">
                 <input type="email" className="form-control form-control-lg" placeholder="Email Address" name="email" value={email} onChange={onChange} />
-                <small className="form-text text-muted">This site uses Gravatar so if you want a profile image, use a Gravatar email</small>
               </div>
+              <small className="form-text text-muted">Password has to be 6 characters or more</small>
               <div className="form-group">
                 <input type="password" className="form-control form-control-lg" placeholder="Password" name="password" value={password} onChange={onChange} />
               </div>

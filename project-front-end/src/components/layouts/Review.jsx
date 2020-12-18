@@ -75,7 +75,7 @@ export default class Review extends Component {
   onDelete = event => {
     event.preventDefault();
 
-    axios.delete(`http://localhost:9021/microservices/${this.state.id}`)
+    axios.delete(`http://localhost:9021/microservices/review/${this.state.id}`)
       .then(res => {
         console.log(res);
         console.log(res.data);

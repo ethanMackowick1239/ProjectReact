@@ -29,6 +29,28 @@ export default class Header extends Component {
 
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
+                <Link className="nav-link" to="/Product">
+                  Product
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/Stock">
+                  Stock
+                </Link>
+              </li>
+
+              <li className="nav-item" >
+                <Link className="nav-link" to="/Price">
+                  Price
+                </Link>
+              </li>
+              <li className="nav-item" style={{ borderRight: "3px solid rgb(169,169,169)" }}>
+                <Link className="nav-link" to="/Review">
+                  Review
+                </Link>
+              </li>
+
+              <li className="nav-item">
                 <Link className="nav-link" to="/register">
                   Sign Up
                 </Link>
@@ -36,7 +58,7 @@ export default class Header extends Component {
               <li className="nav-item">
                 <Link className="nav-link" to="/login">
                   Login
-                </Link>
+                 </Link>
               </li>
             </ul>
           </div>

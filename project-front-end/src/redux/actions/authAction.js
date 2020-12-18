@@ -10,6 +10,7 @@ export const registerUser = formData => async dispatch => {
             payload: res.data
         }
         )
+        window.location.replace("/Login");
     }
     catch (err) {
         dispatch({

@@ -1,5 +1,7 @@
 import axios from "axios";
 import React, { Component } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default class Login extends Component {
   constructor() {
@@ -20,10 +22,18 @@ export default class Login extends Component {
     axios
       .post("http://localhost:9021/microservices/signin", loginUser)
       .then((response) => {
+        if (response.data == true) {
+          window.location.replace("/Home");
+        }
+        else {
+          toast.error("Invalid Credentials !", {
+            position: "top-center",
+            autoClose: 5000,
+          })
+        }
         console.log(response.data)
-
         localStorage.setItem('data', JSON.stringify(response.data))
-        //TODO route to home page
+
       })
       .catch((err) => console.log(err));
   };
@@ -55,6 +65,7 @@ export default class Login extends Component {
                     onChange={this.handleChange}
                   />
                 </div>
+                <ToastContainer />
                 <div className="form-group">
                   <input
                     type="password"

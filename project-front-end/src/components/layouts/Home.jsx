@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 
 export default class Home extends Component {
   render() {
@@ -15,8 +14,8 @@ export default class Home extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-12 text-center">
-                <h1 className="display-3 mb-4">Services</h1>
-                <p className="lead"> Manipulate your assets </p>
+                <h1 className="display-3 mb-4">Update Catalog</h1>
+                <p className="lead"> Add/Update/Delete from Catalog</p>
                 <Link to="/Product">
                   <button type="button" class="btn btn-lg btn-info mr-2">
                     Product
@@ -41,8 +40,8 @@ export default class Home extends Component {
             </div>
             <div className="row">
               <div className="col-md-12 text-center">
-                <h1 className="display-3 mb-4" style={headerStyle}>Get Services</h1>
-                <p className="lead">Check the Data for your Company</p>
+                <h1 className="display-3 mb-4" style={headerStyle}>Search Catalog</h1>
+                <p className="lead">Search through the data of your Catalog</p>
                 <Link to="/ProductGet">
                   <button type="button" class="btn btn-lg btn-info mr-2">
                     Product
